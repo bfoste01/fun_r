@@ -1,0 +1,16 @@
+{
+    "contents" : "\\documentclass[10pt]{article}\n\\usepackage[margin=1.15 in]{geometry}\n<<loaddata, echo=FALSE, message=FALSE>>=\n  Hospital <- c(rep(\"A\", 20), rep(\"B\", 20))\nWard <- rep(c(rep(\"ICU\", 10), rep(\"Medicine\", 10)), 2)\nMonth <- rep(seq(1:10), 4)\nOutcomes <- rnorm(40, 20, 5)\ndf <- data.frame(Hospital, Ward, Month, Outcomes)\nsubgroup <- df[ df$Hospital == x,]\n@\n\n\\begin{document}\n<<setup, echo=FALSE >>=\n  opts_chunk$set(fig.path = paste(\"test\", x , sep=\"\"))\n@\n\nSome informative text about hospital \\Sexpr{x}\n\n<<plots, echo=FALSE >>=\n  for(ward in unique(subgroup$Ward)){\n    subgroup2 <- subgroup[subgroup$Ward == ward,]\n    #     subgroup2 <- subgroup2[ order(subgroup2$Month),]\n    savename <- paste(x, ward)\n    plot(subgroup2$Month, subgroup2$Outcomes, type=\"o\", main=paste(\"Trend plot for\", savename))\n  }\n@\n\\end{document}",
+    "created" : 1420037921693.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "310190328",
+    "id" : "420327EA",
+    "lastKnownWriteTime" : 1420038064,
+    "path" : "~/Desktop/autoreport/test.rnw",
+    "project_path" : "test.rnw",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "sweave"
+}

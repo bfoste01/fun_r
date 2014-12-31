@@ -1,0 +1,16 @@
+{
+    "contents" : "# This is very useful http://stackoverflow.com/questions/15396755/using-loops-with-knitr-to-produce-multiple-pdf-reports-need-a-little-help-to?lq=1\n\n# input data\nHospital <- c(rep(\"A\", 20), rep(\"B\", 20))\nWard <- rep(c(rep(\"ICU\", 10), rep(\"Medicine\", 10)), 2)\nMonth <- rep(seq(1:10), 4)\nOutcomes <- rnorm(40, 20, 5)\ndf <- data.frame(Hospital, Ward, Month, Outcomes)\n\n# generate the tex files, one for each hospital in df\nlibrary(knitr)\nlapply(unique(df$Hospital), function(x) \n       knit(\"test.rnw\", \n            output=paste('report_', x, '.tex', sep=\"\")))\n\n# generate PDFs from the tex files, one for each hospital in df\nlibrary(knitr); lapply(unique(df$Hospital), function(x) knit2pdf(\"test.rnw\", output=paste0('report_', x, '.tex')))",
+    "created" : 1420037956548.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "628550644",
+    "id" : "C332D0FD",
+    "lastKnownWriteTime" : 1420038125,
+    "path" : "~/Desktop/autoreport/driver.r",
+    "project_path" : "driver.r",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
